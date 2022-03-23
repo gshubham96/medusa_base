@@ -2,11 +2,11 @@
 	path = dsor_utils
 	url = https://github.com/dsor-isr/dsor_utils.git
 [submodule "third_party/dmac"]
-	path = 3rd_party/dmac
+	path = third_party/dmac
 	url = https://github.com/EvoLogics/dmac.git
 [submodule "third_party/msgs/auv_msgs"]
-	path = 3rd_party/auv_msgs
+	path = third_party/msgs/auv_msgs
 	url = https://github.com/oceansystemslab/auv_msgs.git
 [submodule "third_party/msgs/nmea_msgs"]
-	path = 3rd_party/nmea_msgs
+	path = third_party/msgs/nmea_msgs
 	url = https://github.com/ros-drivers/nmea_msgs
