@@ -7,3 +7,6 @@
 [submodule "third_party/msgs/nmea_msgs"]
 	path = third_party/msgs/nmea_msgs
 	url = https://github.com/ros-drivers/nmea_msgs
+[submodule "dsor_utils"]
+	path = dsor_utils
+	url = https://github.com/dsor-isr/dsor_utils.git
