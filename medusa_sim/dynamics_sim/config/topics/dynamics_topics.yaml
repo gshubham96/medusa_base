@@ -1,0 +1,7 @@
+# Dynamics topics for Vehicle medusa
+topics:
+  subscribers:
+    thrusters: "/thrusters/rpm_command" 
+    external_force: "/medusa/external_force"
+  publishers:
+    position: "position"

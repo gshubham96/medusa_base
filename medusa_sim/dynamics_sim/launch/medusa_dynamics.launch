@@ -1,0 +1,11 @@
+<launch>
+	<env name="ROSCONSOLE_FORMAT" value="[${severity}] [${time}]: ${node}: ${message}"/>
+
+	<!-- Dynamics -->
+	<arg name="initial_pose" default="[0.0, 0.0, 0.0, 0.0, 0.0, 0.0]"/>
+	<rosparam command="load" file="$(find dynamics_sim)/config/dynamics_medusa.yaml" />
+	<param name="dynamics/medusa/initial_pose" value="$(arg initial_pose)"/>
+	<node pkg="dynamics_sim" name="dynamics_medusa" type="dynamics_medusa.py" respawn="false" output="screen">
+		<!-- <remap from="uwsim/position" to="position"/> -->
+	</node>
+</launch>

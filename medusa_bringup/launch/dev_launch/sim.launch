@@ -17,10 +17,9 @@
         <arg name="dollar" value="$" />
         <rosparam command="load" file="$(arg dollar)$(arg config_package_path))/config/$(arg folder)/$(arg name)/sim.yaml" />
 
-        <!-- Launch Nodes that are common to all vehicles -->
         <!-- dynamics: simulates the dynamics of the vehicle -->
         <group if="$(arg dynamics)">
-            <node pkg="auv_sim" type="auv_sim_node" name="auv_sim" respawn="false" output="screen" />
+            <node pkg="dynamics_sim" type="dynamics.py" name="dynamics" output="screen" respawn="false" />
         </group>
 
         <!-- sensors: simulates the sensors -->

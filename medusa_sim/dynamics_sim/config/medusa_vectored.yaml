@@ -1,0 +1,57 @@
+## Dynamics model parameters for Vehicle medusa vectored
+#   medusa with six bluerobotics thrusters
+#   check out medusa_vectored in ~/docs/vehicle_configs for more info
+medusa:
+  num_actuators: 4
+  dynamics:
+    period: 0.001
+    t_period: 0.01         # period for timer to publish state output
+    mass: 28.5
+    gravity_center: [0.0, 0.0, 0.0]
+    g: 9.807
+    radius: 0.286
+    ctf: [0.00000177778, 0.0, 0.0]     # parameters for medusa seabotix, eqn -> Thrust = f(rpm)
+    ctb: [-0.00000177778, 0.0, 0.0]     # parameters for medusa seabotix, eqn -> Thrust = f(rpm)
+    # ctf: [0.000000443747304, -0.000084128010586, 0.002427919366839]     # parameters for bluerobotics T200, eqn -> Thrust = f(rpm)
+    # ctb: [-0.000000443747304, 0.000084128010586, -0.002427919366839]     # parameters for bluerobotics T200, eqn -> Thrust = f(rpm)
+    actuators_tau: [0.2, 0.2, 0.2, 0.2]         # Actuator tau for first order actuator dynamic model - no idea
+    actuators_maxsat: [100, 100, 100, 100]      # Inputs higher than actuators_maxsat will saturate to actuators_maxsat
+    actuators_minsat: [8.6, 8.6, 8.6, 8.6]      # Inputs below actuators_minsat will saturated to zero
+    actuators_gain: [45, 45, 45, 45]            # Inputs to actuators will be scaled to actuators_gain
+    dzv: 0.05
+    dv: 0.25
+    dh: 0.25
+    density: 1000.0
+    tensor: [1000.0, 0, 0.0, 0.0, 1000.0, 0.0, 0.0, 0.0, 4.14]
+    damping: [-0.2, -55.1, -4.1879, -3000.0, -3000.0, -4.14]
+    quadratic_damping: [-25, -101.3, -40.9649,  -3000.0, -3000.0, -6.23]
+    Mrb: [ 17.0, 0.0,  0.0,  0.0,    0.0,    0.0, 
+            0.0, 17.0, 0.0,  0.0,    0.0,    0.0, 
+            0.0, 0.0,  17.0, 0.0,   -0.0,    0.0, 
+            0.0, 0.0,  0.0,  1000.0, 0.0,    0.0, 
+            0.0, 0.0, -0.0,  0.0,    1000.0, 0.0, 
+           -0.0, 0.0,  0.0,  0.0,    0.0 ,   4.14]
+    Ma: [  20.0, 0.0,  0.0,    0.0, 0.0, 0.0, 
+            0.0, 30.0, 0.0,    0.0, 0.0, 0.0, 
+            0.0, 0.0,  80.088, 0.0, 0.0, 0.0, 
+            0.0, 0.0,  0.0,    0.0, 0.0, 0.0, 
+            0.0, 0.0,  0.0,    0.0, 0.0, 0.0, 
+            0.0, 0.0,  0.0,    0.0, 0.0, 0.5]
+    allocation_matrix: [ 0.707, -0.707, 0.0, -0.2, -0.2, 0.0,  ## medusa thrusters.
+                         0.707,  0.707, 0.0, -0.2,  0.2, 0.0,  # First 3 elements in each row represent unit allocation vector i.e. contribution of the thruster force in 3d space
+                         0.707, -0.707, 0.0,  0.2,  0.2, 0.0,  # Last  3 elements in each row represent position of the thruster wrt the COM
+                         0.707,  0.707, 0.0,  0.2, -0.2, 0.0]  # Size of the allocation matrix is nx6, where n = no of thrusters 
+                        #  0.0,    0.0,   1.0,  0.0, -0.1, 0.0,  # Last  3 elements in each row represent position of the thruster wrt the COM
+                        #  0.0,    0.0,   1.0,  0.0,  0.1, 0.0]  # Size of the allocation matrix is nx6, where n = no of thrusters 
+    initial_pose: [0.0, 0.0, 0.0, 0, 0, 0]   #Meters and Rads [X, Y, Z, Roll, Pitch, Yaw]
+    initial_velocity: [0, 0, 0, 0, 0, 0]
+    topic_name: "/dataNavigator"
+    external_force_topic: "/medusa/external_force"
+    frame_id: "g500_base_link"
+
+dynamics:
+  current_mean: [0.0, 0, 0]  #WATER CURRENTs SIMULATION
+  current_sigma: [0.002, 0.001, 0.001]
+  current_min: [0.0, 0.0, 0.0]
+  current_max: [0.0, 0.0, 0.0]
+

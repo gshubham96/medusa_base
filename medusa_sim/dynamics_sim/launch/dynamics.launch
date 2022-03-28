@@ -1,0 +1,8 @@
+<launch>
+	<arg name="name" default="myellow"/>
+
+    <node name="dynamics_sim" pkg="dynamics_sim" type="dynamics.py" output="screen" respawn="false">
+    	<rosparam command="load" file="$(find dynamics_sim)/config/medusa.yaml" />
+        <rosparam command="load" file="$(find dynamics_sim)/config/topics/dynamics_topics.yaml"/>
+    </node>
+</launch>

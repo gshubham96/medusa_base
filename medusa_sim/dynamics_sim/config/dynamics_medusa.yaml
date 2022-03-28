@@ -1,0 +1,53 @@
+# ODIN (with Garbi thrusters) dynamics model
+# WARNING!!!
+# The thrusters allocation matrix "b" is defined in the code. It can not be changed using parameters.
+
+vehicle_type: medusa
+dynamics/medusa/period: 0.01
+dynamics/medusa/mass: 17.0
+dynamics/medusa/gravity_center: [0.0, 0.0, 0.0]
+dynamics/medusa/g: 9.81
+dynamics/medusa/radius: 0.286
+
+dynamics/medusa/max_thrusters_rpm: 4500
+dynamics/medusa/ctf: 0.00000177778
+dynamics/medusa/ctb: 0.00000177778
+dynamics/medusa/ctf_lin: 0.000005162 # 0.002323/450
+dynamics/medusa/ctb_lin: 0.000042997
+dynamics/medusa/ctf_quad: 0.0000202355
+dynamics/medusa/ctb_quad: 0.00001919777
+dynamics/medusa/thrusters_pole: 7.2115
+dynamics/medusa/thrusters_delay: 0.35
+dynamics/medusa/dzv: 0.05
+dynamics/medusa/dv: 0.25
+dynamics/medusa/dh: 0.25
+dynamics/medusa/density: 1000.0
+
+# Vertical coordinate parameters
+# alfa, beta, delta, gamma
+#-0.1287   -2.4097   -0.0113    0.0168 # Ana's parameters ..z = alfa .z + beta .z abs(.z) + gamma T + delta
+#-2.1879  -40.9649   -0.1921    0.2862 #parameters times m=17
+dynamics/medusa/tensor: [1000.0, 0, 0.0, 0.0, 1000.0, 0.0, 0.0, 0.0, 4.14]
+dynamics/medusa/damping: [-0.2, -55.1, -4.1879, -3000.0, -3000.0, -4.14]
+dynamics/medusa/quadratic_damping: [-25, -101.3, -40.9649,  -3000.0, -3000.0, -6.23]
+
+#Meters and Rads [X, Y, Z, Roll, Pitch, Yaw]
+dynamics/medusa/initial_pose: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+dynamics/medusa/initial_velocity: [0, 0, 0, 0, 0, 0]
+
+dynamics/medusa/odom_topic_name: "dynamics_sim/position"
+dynamics/medusa/thrusters_topic: "dynamics_sim/thrusters"
+
+dynamics/medusa/world_frame_id: "map"
+dynamics/medusa/frame_id: "medusa"
+
+#WATER CURRENTs SIMULATION
+dynamics/current_mean: [0.0, 0.0, 0]
+dynamics/current_sigma: [0, 0, 0]
+dynamics/current_min: [0.0, 0.0, 0.0]
+dynamics/current_max: [0.0, 0.0, 0.0]
+
+#dynamics/current_mean: [0.05, 0, 0]
+#dynamics/current_sigma: [0.002, 0.001, 0.001]
+#dynamics/current_min: [0.0, 0.0, 0.0]
+#dynamics/current_max: [0.0, 0.0, 0.0]
