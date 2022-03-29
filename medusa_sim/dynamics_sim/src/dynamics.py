@@ -246,7 +246,6 @@ class Dynamics :
         """Receives the control input, saturates each component to maxsat or minsat, and multiplies each component by the actuator gain"""
         #TODO: Check the size of thrusters.data
         t = array(thrusters.value)
-        print(t)
         for i in range(size(t)):
             if abs(t[i]) > self.actuators_maxsat[i]:
                 t[i] = sign(t[i]) * self.actuators_maxsat[i]
@@ -255,6 +254,7 @@ class Dynamics :
         self.u=t
         for i in range(self.num_actuators):
             self.u[i] = self.u[i]*self.actuators_gain[i]
+        print(self.u)
 
     # simulates "realistic" thruster behavior by intriducing delay when large changes to the input signals are made     
     def thrustersDynamics(self, u):
