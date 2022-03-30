@@ -13,6 +13,8 @@
     <arg name="gnss2utm"            default="false" />  
     <arg name="usbl2pos"            default="false" />
     <arg name="auvstate2mstate"     default="false" />
+    <arg name="imu2meas"            default="false" />
+    <arg name="pressure2depth"      default="false" />
 
     <group ns="nav">
         <!-- Vehicle Specific Config File -->
@@ -39,5 +41,16 @@
         <group if="$(arg auvstate2mstate)">
             <node pkg="nav_tools" type="auvstate_to_mstate" name="auvstate2mstate" respawn="true" output="screen" />
         </group>
+
+        <!-- nav_tools: convert sensor_msgs::Imu state to dsor_msgs::measurement -->
+        <group if="$(arg imu2meas)">
+            <node pkg="nav_tools" type="imu_to_meas" name="imu2meas" respawn="true" output="screen" />
+        </group>
+
+        <!-- nav_tools: convert sensor_msgs::FluidPressure pressure to dsor_msgs::measurement depth -->
+        <group if="$(arg pressure2depth)">
+            <node pkg="nav_tools" type="pressure_to_depth" name="pressure2depth" respawn="true" output="screen" />
+        </group>
+
     </group>
 </launch>

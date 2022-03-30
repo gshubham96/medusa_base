@@ -6,6 +6,8 @@ find_package(catkin REQUIRED
  std_msgs 
  auv_msgs
  dsor_msgs
+ sensor_msgs 
+ mavros_msgs
  medusa_msgs
  roscpp
  tf2
@@ -20,6 +22,10 @@ catkin_package(
  CATKIN_DEPENDS
  DEPENDS GeographicLib
 )
+
+# add_compile_options(-std=c++11) 
+find_package(Eigen3 REQUIRED)
+include_directories(${EIGEN3_INCLUDE_DIR})
 
 add_compile_options(-std=c++17 -Wall -O3) 
 
@@ -52,3 +58,13 @@ target_link_libraries(auvstate_to_mstate ${catkin_LIBRARIES} ${GeographicLib_LIB
 add_executable(smooth_state src/SmoothState.cpp)
 add_dependencies(smooth_state ${catkin_EXPORTED_TARGETS})
 target_link_libraries(smooth_state ${catkin_LIBRARIES} ${GeographicLib_LIBRARIES})
+
+# imu_to_meas
+add_executable(imu_to_meas src/ImuToMeas.cpp)
+add_dependencies(imu_to_meas ${catkin_EXPORTED_TARGETS})
+target_link_libraries(imu_to_meas ${catkin_LIBRARIES})
+
+# pressure_to_depth
+add_executable(pressure_to_depth src/FluidPressureToDepth.cpp)
+add_dependencies(pressure_to_depth ${catkin_EXPORTED_TARGETS})
+target_link_libraries(pressure_to_depth ${catkin_LIBRARIES})
