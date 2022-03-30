@@ -80,6 +80,7 @@ void Gnss2Utm::loadParams()
   ROS_INFO("Load the Gnss2Utm parameters");
   // Program Parameters
   p_default_depth_ = MedusaGimmicks::getParameters<double>(nh_private_, "default_depth", NAN);
+	frame_override = MedusaGimmicks::getParameters<std::string>(nh_private_, "frame_override", std::string());
 }
 
 /*
@@ -118,6 +119,9 @@ void Gnss2Utm::gnssBroadcasterCallback(const sensor_msgs::NavSatFix &msg)
 
   utm.header.stamp = msg.header.stamp;
   utm.header.frame_id = msg.header.frame_id;
+	if (frame_override != std::string()){
+		utm.header.frame_id = frame_override;
+	}
 
   utm.value.push_back(northing);
   utm.value.push_back(easting);

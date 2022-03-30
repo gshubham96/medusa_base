@@ -68,13 +68,13 @@ private:
 
 	// +.+ package.xml Parameters from Yaml
     double p_default_depth_;
-	std::string p_gnss_topic_, p_state_topic_;
-  ros::Timer timer_gps_;
-  ros::Timer timer_gps_gt_;
-  ros::ServiceServer enable_gps_srv_;
-  dsor_msgs::Measurement utm_;
-  medusa_msgs::mState state_gt_;
-  bool gps_good_{true};
+	std::string p_gnss_topic_, p_state_topic_, frame_override;
+  	ros::Timer timer_gps_;
+	ros::Timer timer_gps_gt_;
+	ros::ServiceServer enable_gps_srv_;
+	dsor_msgs::Measurement utm_;
+	medusa_msgs::mState state_gt_;
+	bool gps_good_{true};
 
 	// +.+ Problem variables
   // #######################################################################################
